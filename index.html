@@ -1,0 +1,680 @@
+<html>
+	<head>
+		<title>MoviesForU</title>
+		<link rel="icon" href="https://cdn2.iconfinder.com/data/icons/musical-instruments-21/200/misc_popcorn-256.png" type="image/icon type">
+		<meta name="color-scheme" content="dark light">
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+		<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+		<!--<link rel="stylesheet" href="home.css" />-->
+		<style>
+		@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+		*{
+			outline: none !important;
+			scroll-behavior: smooth;
+		}
+		body{
+			margin:0;
+			padding:0;
+			background-image:url("https://images.wallpaperscraft.com/image/hexagons_mesh_dark_155145_1280x720.jpg");
+			background-attachment:fixed; 
+			background-repeat: repeat-y;
+			background-size:100%;
+			font-size: 16px;
+			color:#777;
+			font-family: sans-serif;
+			font-weight:300;
+		}
+		#login-box{
+			position: relative;
+			margin:5% auto;
+			padding:20px;
+			height:600px;
+			width:300px;
+			background:#fff;
+			//background-image:linear-gradient(27deg,#004E95 50%, #013A6B 50%);
+			box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+			opacity:40px;
+		}
+		input[type="text"],input[type="file"],input[type="url"]{
+			display: block;
+			box-sizing:border-box;
+			margin-bottom:10px;
+			padding:4px;
+			width:220px;
+			height:32px;
+			border:none;
+			outline:none;
+			border-bottom:1px solid #aaa;
+			font-family: sans-serif;
+			font-weight:400;
+			font-size:15px;
+			transition:0.2s ease;
+			background-color: transparent;
+		}
+		#login-box h1{
+			font-weight:300;
+			font-size:28px;
+			color:#000;
+		}
+		#login-box p{
+			font-weight:50;
+			font-size:15px;
+			color:#000;
+		}
+		#addbtn{
+			margin-bottom:10px;
+			width:120px;
+			height:32px;
+			background:#FFCC00;
+			border:none;
+			border-radius:2px;
+			color:#fff;
+			font-family:sans-serif;
+			font-weight:500;
+			text-transform:uppercase;
+			transition:0.2s ease;
+			cursor:pointer;
+		}
+		#addbtn:hover,
+		#addbtn:focus{
+			background:#ffff00;
+			transition:0.2s ease;
+			color:#000;
+		}
+		.static{
+			overflow:scroll;
+			height:500px;			
+		}
+		h1{
+			font-weight:300;
+			font-size:28px;
+		}
+		main{
+			width:80%;
+			margin:0px auto;
+		}
+		.thumnails{
+			width:65%;
+			float:left;
+			margin:10px;
+			padding:0px;
+			box-sizing:border-box;
+		}
+		.thumnails img{
+			width:100%;
+			height:auto;
+		}
+		.thumnails img:hover{
+			box-shadow: 0 4px 10px rgba(0,0,64,0.6);
+		}
+		.banner{
+			background:none;
+			color:#fff;
+		}
+		.gallery {
+		  margin: 20px;
+		  margin-left:auto;
+		  float: left;
+		  width: 200px;	
+		  height: 400px;	
+		  //border: 1px solid white;
+		}
+		.imgstyle {
+		  width: 200px;
+		  height: 300px;
+		}
+		#search{
+			margin-top: 50px;
+		}
+		/*header{
+			opacity:0.5;
+		}
+		header:hover{
+			opacity:2;
+		}*/
+		.dropdown-item:hover{
+			color:#FFD700;
+		}
+		#mov{
+			background-color:#fff;
+			width: 80%;
+			display:inline;
+		}
+		.search{
+			width:120px;
+			height:32px;
+			background:#FFCC00;
+			border:none;
+			border-radius:2px;
+			color:#fff;
+			font-family:sans-serif;
+			font-weight:500;
+			text-transform:uppercase;
+			transition:0.2s ease;
+			cursor:pointer;
+		}
+		.search:hover{
+			background:#ffff00;
+			color:#000;			
+		}
+		.vimg{
+			height: 300px;
+			width:200px;
+		}
+		#vname{
+			font-size:15px;
+			color:#fff;
+		}
+		#vdolink{
+			color:#fff;
+			text-decoration: none;
+		}
+		#vdolink:hover,#vdolink:focus{
+			color:#000;
+		}
+		#download{
+			margin-bottom:10px;
+			text-decoration: none;
+			width:120px;
+			height:32px;
+			background:#FFCC00;
+			border:none;
+			border-radius:2px;
+			color:#fff;
+			font-family:sans-serif;
+			font-weight:500;
+			text-transform:uppercase;
+			transition:0.2s ease;
+			cursor:pointer;
+		}
+		#download:hover,
+		#download:focus{
+			background:#ffff00;
+			transition:0.2s ease;
+			text-decoration: none;
+			color:#000;
+		}
+		.m_search{
+			float:left;
+			margin-left:50px;
+			color:#F8F8FF;	
+		}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+		
+	</head>
+	
+	<body  data-spy="scroll" data-target=".nevbar" data-offset="50">
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+				<div class="container">
+				  <a class="navbar-brand" href="#">MoviesForU</a>
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				  </button>
+
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-lg-auto">
+					  <li class="nav-item active">
+						<a class="nav-link" href="#search">Search Movie<span class="sr-only">(current)</span></a>
+					  </li>	
+					  <li class="nav-item active">
+						<a class="nav-link" href="#upload">Uploading Movies</a>
+					  </li>	
+					  <li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  Movies
+						</a>	
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						  <a class="dropdown-item" href="#bolly">Bollywood</a>
+						  <a class="dropdown-item" href="#holly">Hollywood</a>
+						  <a class="dropdown-item" href="#tolly">Tollywood</a>
+						  <a class="dropdown-item" href="#net">Netflix or Other Series</a>
+						  <div class="dropdown-divider"></div>
+						  <a class="dropdown-item" href="#"></a>
+						  <a class="dropdown-item" href="#oth">Other</a>
+						</div>
+						</li>
+					</ul>
+					
+				  </div>
+			  </div>
+			</nav>
+		</header>
+		
+		<!--Searching movies-->
+		<div class="jumbotron jumbotron-fluid height100p banner" id="search">
+		  <div class="container h100">
+			<div class="contentBox h100">
+				<div>
+					<p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"></p>
+					<div data-aos="flip-up" data-aos-duration="1000" data-aos-delay="500"  class="imgslider">
+						<center><input type="text" id="mov" placeholder="Search movie">
+						<button onclick="getvdo();" class="search">Search</button>
+						<form name="empty2"><p class="m_search">
+						Select Category of Song:
+						<input type="radio" id="bollywood" name="movie" value="Bollywood">Bollywood
+						<input type="radio" id="hollywood" name="movie" value="Hollywood">Hollywood
+						<input type="radio" id="tollywood" name="movie" value="Tollywood">Tollywood
+						<input type="radio" id="netflix" name="movie" value="Netflix">Netflix or Other Series
+						<input type="radio" id="other" name="movie" value="Other">Other</form>
+						<br>
+						<img id="vimg" src="">
+						<br>
+						<p><strong id="vname"></strong></p>
+						<a href="" id="vdolink"></a>	
+						</center>
+		</div></div></div></div></div>
+			
+		<!--Movies lists Bollywood-->
+		<div class="jumbotron jumbotron-fluid height100p banner" id="bolly">
+		  <div class="container h100">
+		  <h1 data-aos="zoom-out-up" data-aos-duration="1000" data-aos-delay="0">Bollywood</h1>
+			<div class="contentBox h100 ">
+				<div>
+					<p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"></p>
+					<div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500"  class="imgslider">
+					<table id="bolly">
+						<tbody> 
+							
+						</tbody>
+					</table>					
+					</div></div></div></div></div>
+			
+		<!--Movies lists Hollywood-->			
+		<div class="jumbotron jumbotron-fluid height100p banner" id="holly">
+		  <div class="container h100">
+		  <h1 data-aos="zoom-out-up" data-aos-duration="1000" data-aos-delay="0">Hollywood</h1>
+			<div class="contentBox h100 ">
+				<div>
+					<p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"></p>
+					<div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500"  class="imgslider">
+					<table id="holly">
+						<tbody> 
+							
+						</tbody>
+					</table>					
+					</div></div></div></div></div>
+			
+		<!--Movies lists Tollywood-->			
+		<div class="jumbotron jumbotron-fluid height100p banner" id="tolly">
+		  <div class="container h100">
+		  <h1 data-aos="zoom-out-up" data-aos-duration="1000" data-aos-delay="0">Tollywood</h1>
+			<div class="contentBox h100 ">
+				<div>
+					<p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"></p>
+					<div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500"  class="imgslider">
+					<table id="tolly">
+						<tbody> 
+							
+						</tbody>
+					</table>					
+					</div></div></div></div></div>
+			
+		<!--Movies lists Netflix-->			
+		<div class="jumbotron jumbotron-fluid height100p banner" id="net">
+		  <div class="container h100">
+		  <h1 data-aos="zoom-out-up" data-aos-duration="1000" data-aos-delay="0">Netflix or Other Series</h1>
+			<div class="contentBox h100 ">
+				<div>
+					<p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"></p>
+					<div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500"  class="imgslider">
+					<table id="net">
+						<tbody> 
+							
+						</tbody>
+					</table>					
+					</div></div></div></div></div>
+			
+		
+		<!--Movies lists Other-->	
+		<div class="jumbotron jumbotron-fluid height100p banner" id="oth">
+		  <div class="container h100">
+		  <h1 data-aos="zoom-out-up" data-aos-duration="1000" data-aos-delay="0">Other</h1>
+			<div class="contentBox h100 ">
+				<div>
+					<p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"></p>
+					<div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500"  class="imgslider">
+					<table id="oth">
+						<tbody> 
+							
+						</tbody>
+					</table>					
+					</div></div></div></div></div>
+			
+		<!--Uploading movies-->			
+		<div class="jumbotron jumbotron-fluid height100p banner" id="upload">
+		  <div class="container h100">
+			<div class="contentBox h100">
+				<div>
+				<div id='login-box' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+				<form method="post" enctype="multipart/form-data" name="empty">
+					<h1>Uploading Movie</h1>
+					<p>Name/ID of movie: <input type="text" id="idm" name="id">
+					Name of movie: <input type="text" name="name" id="name">
+					Upload Image: <input type="url" name="image" id="image"><br>
+					Upload Movie: <input type="url" name="movie" id="vdo">
+					Select Category of Song: <br><input type="radio" id="bollywood" name="movie" value="Bollywood">Bollywood<br>
+					<input type="radio" id="hollywood" name="movie" value="Hollywood">Hollywood<br>
+					<input type="radio" id="tollywood" name="movie" value="Tollywood">Tollywood<br>
+					<input type="radio" id="netflix" name="movie" value="Netflix">Netflix<br>
+					<input type="radio" id="other" name="movie" value="Other">Other<br></p>
+					<button id="addbtn">Upload</button>
+				</form></div></div></div></div></div>
+		
+	</body>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+			AOS.init();
+		</script>
+		<script type="text/javascript">
+			$(document).scroll(function(){
+				$('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
+			});
+		</script>
+		
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		 https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
+
+	<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+		apiKey: "AIzaSyAB7XrM8t50lubTTBMAiIj2l4N85ZrOoGY",
+		authDomain: "moviesforyou-e30ab.firebaseapp.com",
+		databaseURL: "https://moviesforyou-e30ab.firebaseio.com",
+		projectId: "moviesforyou-e30ab",
+		storageBucket: "moviesforyou-e30ab.appspot.com",
+		messagingSenderId: "275668169715",
+		appId: "1:275668169715:web:a5f3d60467dfb376651886",
+		measurementId: "G-SL6GHXC1EL"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	  firebase.analytics();
+	  console.log(firebase);
+	  
+	  
+	const aid = document.getElementById('idm');
+	const nam = document.getElementById('name');
+	const img = document.getElementById('image');
+	const vdo = document.getElementById('vdo');
+	const cat = document.getElementsByName('movie');
+	const add = document.getElementById('addbtn');
+
+	const db = firebase.database();
+
+	addbtn.addEventListener('click', function(e){
+		e.preventDefault();
+		var empt_id = document.forms["empty"]["id"].value;
+		var empt_name = document.forms["empty"]["name"].value;
+		var empt_img = document.forms["empty"]["image"].value;
+		var empt_vdo = document.forms["empty"]["vdo"].value;
+		
+		if(empt_id == ""){
+			alert("Please File the Name/Id");
+			return false; 
+		}
+		else if(empt_name == ""){
+			alert("Please File the Name");
+			return false; 
+		}
+		else if(empt_img == ""){
+			alert("Please File the Image url");
+			return false; 
+		}
+		else if(empt_vdo == ""){
+			alert("Please File the Movie url");
+			return false; 
+		}
+		else{
+			for(i=0; i<cat.length; i++){
+			if(cat[i].checked){
+				if(cat[i].value == "Bollywood"){
+					db.ref('/movies/Bollywood/'+idm.value).set({
+					mov_name: nam.value,
+					mov_img: img.value,
+					mov_link: vdo.value		
+					});
+					alert("Uploaded sussccfully");
+					return true;
+				}
+				else if(cat[i].value == "Hollywood"){
+					db.ref('/movies/Hollywood/'+idm.value).set({
+					mov_name: nam.value,
+					mov_img: img.value,
+					mov_link: vdo.value		
+					});
+					alert("Uploaded sussccfully");
+					return true; 
+				}
+				else if(cat[i].value == "Tollywood"){
+					db.ref('/movies/Tollywood/'+idm.value).set({
+					mov_name: nam.value,
+					mov_img: img.value,
+					mov_link: vdo.value		
+					});
+					alert("Uploaded sussccfully");
+					return true; 
+				}
+				else if(cat[i].value == "Netflix"){
+					db.ref('/movies/Netflix/'+idm.value).set({
+					mov_name: nam.value,
+					mov_img: img.value,
+					mov_link: vdo.value		
+					});
+					alert("Uploaded sussccfully");
+					return true; 
+				}
+				else if(cat[i].value == "Other"){
+					db.ref('/movies/Other/'+idm.value).set({
+					mov_name: nam.value,
+					mov_img: img.value,
+					mov_link: vdo.value		
+					});
+					alert("Uploaded sussccfully");
+					return true; 
+				}
+			}}
+		}
+	});
+	
+	//searching movies
+	function getvdo()
+	{
+		var empt_cat = document.forms["empty2"]["movie"].value;
+		if(empt_cat == ""){
+			alert("Please Select the Category");
+			return false; 
+		}
+		else{
+			for(i=0; i<cat.length; i++){
+				if(cat[i].checked){
+					if(cat[i].value == "Bollywood"){
+						var a = document.getElementById("mov").value;
+						firebase.database().ref('/movies/Bollywood/'+a).once('value').then(function(ss){
+							var anam = ss.val().mov_name;
+							var aimg = ss.val().mov_img;
+							var movlink = ss.val().mov_link;
+							document.getElementById("vimg").src = aimg;
+							document.getElementsByTagName("img")[0].setAttribute("class", "vimg");
+							
+							document.getElementById('vname').innerHTML = anam;
+							document.getElementById('vimg').innerHTML = aimg;
+							document.getElementById('vdolink').innerHTML = movlink;
+							document.getElementById("vdolink").href = movlink;
+							document.getElementById("vdolink").innerHTML = "<button id='download'>Download</button>";
+						});
+					}
+					else if(cat[i].value == "Hollywood"){
+						var a = document.getElementById("mov").value;
+						firebase.database().ref('/movies/Hollywood/'+a).once('value').then(function(ss){
+							var anam = ss.val().mov_name;
+							var aimg = ss.val().mov_img;
+							var movlink = ss.val().mov_link;
+							document.getElementById("vimg").src = aimg;
+							document.getElementsByTagName("img")[0].setAttribute("class", "vimg");
+							
+							document.getElementById('vname').innerHTML = anam;
+							document.getElementById('vimg').innerHTML = aimg;
+							document.getElementById('vdolink').innerHTML = movlink;
+							document.getElementById("vdolink").href = movlink;
+							document.getElementById("vdolink").innerHTML = "<button id='download'>Download</button>";
+						});
+					}
+					else if(cat[i].value == "Tollywood"){
+						var a = document.getElementById("mov").value;
+						firebase.database().ref('/movies/Tollywood/'+a).once('value').then(function(ss){
+							var anam = ss.val().mov_name;
+							var aimg = ss.val().mov_img;
+							var movlink = ss.val().mov_link;
+							document.getElementById("vimg").src = aimg;
+							document.getElementsByTagName("img")[0].setAttribute("class", "vimg");
+							
+							document.getElementById('vname').innerHTML = anam;
+							document.getElementById('vimg').innerHTML = aimg;
+							document.getElementById('vdolink').innerHTML = movlink;
+							document.getElementById("vdolink").href = movlink;
+							document.getElementById("vdolink").innerHTML = "<button id='download'>Download</button>";
+						});
+					}
+					else if(cat[i].value == "Other"){
+						var a = document.getElementById("mov").value;
+						firebase.database().ref('/movies/Other/'+a).once('value').then(function(ss){
+							var anam = ss.val().mov_name;
+							var aimg = ss.val().mov_img;
+							var movlink = ss.val().mov_link;
+							document.getElementById("vimg").src = aimg;
+							document.getElementsByTagName("img")[0].setAttribute("class", "vimg");
+							
+							document.getElementById('vname').innerHTML = anam;
+							document.getElementById('vimg').innerHTML = aimg;
+							document.getElementById('vdolink').innerHTML = movlink;
+							document.getElementById("vdolink").href = movlink;
+							document.getElementById("vdolink").innerHTML = "<button id='download'>Download</button>";
+						});
+					}
+				}
+			}
+		}
+	}		
+	//movies list category wise
+	firebase.database().ref('/movies/Bollywood/').once('value',   function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			//console.log(childSnapshot.val());
+		  var childKey = childSnapshot.key;
+		  var childData = childSnapshot.val();
+		  
+		  var anam = childSnapshot.val().mov_name;
+		  var aimg = childSnapshot.val().mov_img;
+		  var movlink = childSnapshot.val().mov_link;
+		  
+		  let new_html = '';
+		  new_html += '<div class="gallery">';
+		  new_html += '<img src="'+aimg+'" class="imgstyle"><br>';		
+		  new_html += '<center><p><strong id="vname">'+anam+'</strong></p>';
+		  new_html += '<button id="download"><a href="'+movlink+'" id="vdolink">Download</a></button>';
+		  new_html += '</center></div>';
+		  $('#bolly').find('tbody').append(new_html);
+		  
+		});
+	});
+	firebase.database().ref('/movies/Hollywood/').once('value',   function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			//console.log(childSnapshot.val());
+		  var childKey = childSnapshot.key;
+		  var childData = childSnapshot.val();
+		  
+		  var anam = childSnapshot.val().mov_name;
+		  var aimg = childSnapshot.val().mov_img;
+		  var movlink = childSnapshot.val().mov_link;
+		  
+		  let new_html = '';
+		  new_html += '<div class="gallery">';
+		  new_html += '<img src="'+aimg+'" class="imgstyle"><br>';		
+		  new_html += '<center><p><strong id="vname">'+anam+'</strong></p>';
+		  new_html += '<button id="download"><a href="'+movlink+'" id="vdolink">Download</a></button>';
+		  new_html += '</center></div>';
+		  $('#holly').find('tbody').append(new_html);
+		  
+		});
+	});
+	firebase.database().ref('/movies/Tollywood/').once('value',   function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			//console.log(childSnapshot.val());
+		  var childKey = childSnapshot.key;
+		  var childData = childSnapshot.val();
+		  
+		  var anam = childSnapshot.val().mov_name;
+		  var aimg = childSnapshot.val().mov_img;
+		  var movlink = childSnapshot.val().mov_link;
+		  
+		  let new_html = '';
+		  new_html += '<div class="gallery">';
+		  new_html += '<img src="'+aimg+'" class="imgstyle"><br>';		
+		  new_html += '<center><p><strong id="vname">'+anam+'</strong></p>';
+		  new_html += '<button id="download"><a href="'+movlink+'" id="vdolink">Download</a></button>';
+		  new_html += '</center></div>';
+		  $('#tolly').find('tbody').append(new_html);
+		  
+		});
+	});
+	firebase.database().ref('/movies/Netflix/').once('value',   function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			//console.log(childSnapshot.val());
+		  var childKey = childSnapshot.key;
+		  var childData = childSnapshot.val();
+		  
+		  var anam = childSnapshot.val().mov_name;
+		  var aimg = childSnapshot.val().mov_img;
+		  var movlink = childSnapshot.val().mov_link;
+		  
+		  let new_html = '';
+		  new_html += '<div class="gallery">';
+		  new_html += '<img src="'+aimg+'" class="imgstyle"><br>';		
+		  new_html += '<center><p><strong id="vname">'+anam+'</strong></p>';
+		  new_html += '<button id="download"><a href="'+movlink+'" id="vdolink">Download</a></button>';
+		  new_html += '</center></div>';
+		  $('#net').find('tbody').append(new_html);
+		  
+		});
+	});
+	firebase.database().ref('/movies/Other/').once('value',   function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			//console.log(childSnapshot.val());
+		  var childKey = childSnapshot.key;
+		  var childData = childSnapshot.val();
+		  
+		  var anam = childSnapshot.val().mov_name;
+		  var aimg = childSnapshot.val().mov_img;
+		  var movlink = childSnapshot.val().mov_link;
+		  
+		  let new_html = '';
+		  new_html += '<div class="gallery">';
+		  new_html += '<img src="'+aimg+'" class="imgstyle"><br>';		
+		  new_html += '<center><p><strong id="vname">'+anam+'</strong></p>';
+		  new_html += '<button id="download"><a href="'+movlink+'" id="vdolink">Download</a></button>';
+		  new_html += '</center></div>';
+		  $('#oth').find('tbody').append(new_html);
+		  
+		});
+	});
+	
+	</script>
+</html>
